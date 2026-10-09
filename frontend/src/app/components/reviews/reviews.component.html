@@ -6,7 +6,9 @@
             <label for="rating" [class.error]="reviewForm.get('rating')?.invalid">Note</label>
             <input type="hidden" id="rating" formControlName="rating" data-cy="review-input-rating">
             <div #stars data-cy="review-input-rating-images">
-                <img *ngFor="let i of [1, 2, 3, 4, 5]" src="assets/images/star-empty.png" (mouseenter)="highlightStar(i)" (mouseleave)="stopHighlight()" (click)="chooseRating(i)" alt="Étoile">
+                <img *ngFor="let i of [1, 2, 3, 4, 5]" src="assets/images/star-empty.png"
+                    (mouseenter)="highlightStar(i)" (mouseleave)="stopHighlight()" (click)="chooseRating(i)"
+                    alt="Étoile">
             </div>
         </div>
         <div>
@@ -27,7 +29,8 @@
         <div class="total-reviews">
             <img src="assets/images/logo.png" alt="Logo" class="logo-review">
             <div>
-                <p class="average" data-cy="reviews-average">{{ average | number:'1.1-1':'fr' }} <img src="assets/images/star-full.png" alt="Étoile"></p>
+                <p class="average" data-cy="reviews-average">{{ average | number:'1.1-1':'fr' }} <img
+                        src="assets/images/star-full.png" alt="Étoile"></p>
                 <p class="number-reviews" data-cy="reviews-number">{{ reviews.length }} avis</p>
             </div>
         </div>
@@ -38,7 +41,9 @@
             <div class="single-review-content">
                 <h2 data-cy="review-title">{{ review.author?.firstname }} - {{ review.title }}</h2>
                 <div class="single-review-stars" data-cy="review-note">
-                    <img *ngFor="let i of [1, 2, 3, 4, 5]" [src]="i <= (review?.rating ?? 0) ? 'assets/images/star-full.png' : 'assets/images/star-empty.png'" alt="Étoile">
+                    <img *ngFor="let i of [1, 2, 3, 4, 5]"
+                        [src]="i <= (review?.rating ?? 0) ? 'assets/images/star-full.png' : 'assets/images/star-empty.png'"
+                        alt="Étoile">
                 </div>
                 <p [innerHTML]="review.comment" data-cy="review-comment"></p>
             </div>
