@@ -29,7 +29,7 @@ Ce projet contient l'application e-commerce **Eco Bliss Bath** ainsi que sa suit
    ```bash
    docker compose up -d
    ```
-2. Ouvrez un terminal dans le dossier `frontend/frontend`.
+2. Ouvrez un terminal dans le dossier `frontend`.
 3. Installez les dépendances :
    ```bash
    npm install
@@ -45,7 +45,7 @@ Ce projet contient l'application e-commerce **Eco Bliss Bath** ainsi que sa suit
 ## 2. Procédure de lancement des tests Cypress
 
 Assurez-vous que l'application et le backend sont bien en cours d'exécution avant de lancer les tests.
-Placez-vous dans le dossier `frontend/frontend`
+Placez-vous dans le dossier `frontend`
 
 ### Mode interactif (avec interface graphique)
 Pour ouvrir la fenêtre Cypress et choisir les tests à exécuter visuellement :
@@ -75,11 +75,11 @@ Lors de l'exécution automatique (`npx cypress run`) :
 
 Les tests sont classés dans le dossier `cypress/e2e` :
 
-- `api/api.cy.ts` : Tests des requêtes API (connexion, produits, avis, panier).
-- `functional/smoke.cy.ts` : Smoke tests (présence des boutons et champs principaux).
-- `functional/connexion.cy.ts` : Tests du formulaire de connexion (valide, invalide, inexistant).
-- `functional/panier.cy.ts` : Tests du panier et validation des limites de saisie.
-- `functional/commande_complete.cy.ts` : Test du tunnel d'achat complet et vérification du stock en base de données.
-- `functional/xss_review.cy.ts` : Test de sécurité contre les failles XSS dans les avis.
+- `api/api.cy.ts` : Tests des requêtes API (authentifié, refus hors connexion avec garantie d'absence de session, produits, avis, limites panier).
+- `functional/smoke.cy.ts` : Smoke tests (boutons de navigation et affichage du stock en mode connecté et déconnecté).
+- `functional/connexion.cy.ts` : Tests du formulaire de connexion (identifiants valides, mot de passe incorrect, compte inexistant).
+- `functional/panier.cy.ts` : Tests du panier (limites de quantité, suppression) avec nettoyage en fin de suite (after).
+- `functional/commande_complete.cy.ts` : Test du tunnel d'achat complet, vérification de décrémentation du stock en BDD et nettoyage (after).
+- `functional/xss_review.cy.ts` : Test de sécurité contre les failles XSS dans les avis (création, persistance BDD, réaffichage et non-exécution JS).
 ```
 
