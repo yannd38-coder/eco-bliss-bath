@@ -71,7 +71,30 @@ Lors de l'exécution automatique (`npx cypress run`) :
 
 ---
 
-##  4. Organisation des fichiers de tests
+
+## 4. Réinitialisation des données (Hard Reset BDD)
+
+**Attention :** Pour garantir la fiabilité des tests (notamment les tests de commande et de panier), la base de données doit être purgée entre chaque exécution pour éviter l'accumulation de données.
+
+**Procédure de reset à exécuter à la racine du projet :**
+
+1. Arrêtez les conteneurs et détruisez le volume de données persistant :
+   ```bash
+   docker compose down -v
+   ```
+2. Relancez les conteneurs (MariaDB recréera une base vierge à partir du fichier .sql) :
+```Bash
+docker compose up -d
+```
+3. Si le serveur Angular tournait dans un autre terminal, relancez-le :
+```Bash
+npx ng serve
+``` 
+
+---
+
+
+##  5. Organisation des fichiers de tests
 
 Les tests sont classés dans le dossier `cypress/e2e` :
 
@@ -82,4 +105,3 @@ Les tests sont classés dans le dossier `cypress/e2e` :
 - `functional/commande_complete.cy.ts` : Test du tunnel d'achat complet, vérification de décrémentation du stock en BDD et nettoyage (after).
 - `functional/xss_review.cy.ts` : Test de sécurité contre les failles XSS dans les avis (création, persistance BDD, réaffichage et non-exécution JS).
 ```
-
